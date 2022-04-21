@@ -1,13 +1,12 @@
 package co.com.devco.model;
 
 public class Usuario {
-    private String usuario;
+    private String username;
     private String password;
-
     private String rol;
 
-    public Usuario(String usuario, String password, String rol) {
-        this.usuario = usuario;
+    public Usuario(String username, String password, String rol) {
+        this.username = username;
         this.password = password;
         this.rol = rol;
     }
@@ -16,8 +15,8 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -30,10 +29,10 @@ public class Usuario {
 
     public void setUsPw(){
         if ("admin".equals(this.rol)){
-            this.usuario = "admin";
+            this.username = "admin";
             this.password = "admin";
         } else{
-            this.usuario = "dummy";
+            this.username = "dummy";
             this.password = "dummy";
         }
     }

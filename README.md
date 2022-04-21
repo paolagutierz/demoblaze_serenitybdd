@@ -1,4 +1,4 @@
-# demoblaze
+# serenitybdd-web-seed
 Un proyecto base para automatización web usando serenityBDD, gradle y scraenplay 
 
 En el archivo serenity.properties, cambiar la propiedad webdriver.chrome.driver a:

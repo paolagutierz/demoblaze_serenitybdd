@@ -28,7 +28,7 @@ public class Loguearse implements Task {
         actor.attemptsTo(
                 Open.url("https://www.demoblaze.com/#"),
                 Click.on(LINK_LOGIN),
-                Enter.theValue(UsuarioFactory.delRol(rol).getUsuario()).into(TEXT_USUARIO),
+                Enter.theValue(UsuarioFactory.delRol(rol).getUsername()).into(TEXT_USUARIO),
                 Enter.theValue(UsuarioFactory.delRol(rol).getPassword()).into(TEXT_CONTRASENA),
                 Click.on(BOTON_LOGIN)
         );
