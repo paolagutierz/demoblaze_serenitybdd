@@ -9,6 +9,7 @@ import static co.com.devco.userinterfaces.DemoblazeCarritoPage.LINK_DELETE_PRODU
 public class ClickDeleteCarrito implements Interaction {
     private String elemento;
 
+
     private  ClickDeleteCarrito(String elemento) {
         this.elemento = elemento;
     }

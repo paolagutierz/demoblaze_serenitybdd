@@ -10,16 +10,15 @@ import net.serenitybdd.screenplay.actions.Click;
 import static co.com.devco.userinterfaces.DemoblazeCarritoPage.*;
 import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_CARRITO;
 import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_HOME;
-import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class LimpiarCarrito implements Task {
-    private String elemento;
+    private String producto;
     private boolean esCompleta;
 
-    public static Performable unElemento(String elemento) {
+    public static Performable unProducto(String producto) {
         LimpiarCarrito obj = new LimpiarCarrito();
         obj.setEsCompleta(false);
-        obj.setElemento(elemento);
+        obj.setProducto(producto);
         return obj;
     }
 
@@ -33,8 +32,8 @@ public class LimpiarCarrito implements Task {
         this.esCompleta = esCompleta;
     }
 
-    private void setElemento(String elemento) {
-        this.elemento = elemento;
+    private void setProducto(String producto) {
+        this.producto = producto;
     }
 
     @Override
@@ -48,7 +47,7 @@ public class LimpiarCarrito implements Task {
         } else {
             actor.attemptsTo(
                     Click.on(LINK_CARRITO),
-                    ClickDeleteCarrito.elemento(elemento),
+                    ClickDeleteCarrito.elemento(producto),
                     Click.on(LINK_HOME)
             );
 
