@@ -8,30 +8,74 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import java.time.Duration;
 
+import static co.com.devco.userinterfaces.DemoblazeCarritoPage.TITULO_PRODUCTO_CARRITO;
 import static co.com.devco.userinterfaces.DemoblazeDetalleProductoPage.BOTON_AGREGAR_CARRITO;
 import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_CARRITO;
+import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_HOME;
 import static co.com.devco.userinterfaces.DemoblazeProductosPage.LINK_PRODUCTO;
-import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class AgregarAlCarrito implements Task {
     private String producto;
+    private boolean sonVarios;
+    private int cantidad;
 
-    public AgregarAlCarrito(String producto) {
+    public static Performable elProducto(String producto) {
+        AgregarAlCarrito obj = new AgregarAlCarrito();
+        obj.setProducto(producto);
+        obj.setSonVarios(false);
+        return obj;
+    }
+
+    public static Performable losProductos(String producto, int cantidad) {
+        AgregarAlCarrito obj = new AgregarAlCarrito();
+        obj.setProducto(producto);
+        obj.setSonVarios(true);
+        obj.setCantidad(cantidad);
+        return obj;
+    }
+
+    public void setProducto(String producto) {
         this.producto = producto;
     }
 
-    public static Performable elProducto(String producto) {
-        return instrumented(AgregarAlCarrito.class, producto);
+    public void setSonVarios(boolean sonVarios) {
+        this.sonVarios = sonVarios;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(
-                Click.on(LINK_PRODUCTO.of(producto)),
-                Click.on(BOTON_AGREGAR_CARRITO),
-                WaitUntil.the(LINK_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(6)),
-                Click.on(LINK_CARRITO)
-        );
+        if (sonVarios) {
+            for (int i = 0; i < cantidad; i++) {
+                actor.attemptsTo(
+                        Click.on(LINK_PRODUCTO.of(producto)),
+                        WaitUntil.the(BOTON_AGREGAR_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(6)),
+                        Click.on(BOTON_AGREGAR_CARRITO),
+                        WaitUntil.the(LINK_HOME, isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
+                        Click.on(LINK_HOME),
+                        WaitUntil.the(LINK_PRODUCTO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(6))
+                );
+            }
+
+            actor.attemptsTo(
+                    Click.on(LINK_CARRITO),
+                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+            );
+
+        } else {
+            actor.attemptsTo(
+                    Click.on(LINK_PRODUCTO.of(producto)),
+                    WaitUntil.the(BOTON_AGREGAR_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(6)),
+                    Click.on(BOTON_AGREGAR_CARRITO),
+                    WaitUntil.the(LINK_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
+                    Click.on(LINK_CARRITO),
+                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+            );
+
+        }
     }
 }
