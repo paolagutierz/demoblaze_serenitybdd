@@ -7,6 +7,7 @@ import co.com.devco.tasks.Loguearse;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
+import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actions.OpenUrl;
 import net.serenitybdd.screenplay.ensure.Ensure;
@@ -27,14 +28,15 @@ public class DemoblazeCarritoStepDefinitions {
     @Dado("que {string} se loguea como {string}")
     public void loguin(String actor, String rol) {
         theActorCalled(actor).attemptsTo(
-                Loguearse.como(rol),
-                LimpiarCarrito.completamente()
+                Loguearse.como(rol)
         );
     }
 
-    @Cuando("agrega el {string} al carrito vacio")
-    public void agregarObjetoAlCarrito(String producto) {
-        theActorInTheSpotlight().attemptsTo(
+    @Cuando("{string} agrega el {string} al carrito vacio")
+    public void agregarObjetoAlCarrito(String actor, String producto) {
+        theActorCalled(actor).attemptsTo(
+                Open.url("https://www.demoblaze.com/#"),
+                LimpiarCarrito.completamente(),
                 AgregarAlCarrito.elProducto(producto)
         );
     }
@@ -47,6 +49,4 @@ public class DemoblazeCarritoStepDefinitions {
         );
 
     }
-
-
 }

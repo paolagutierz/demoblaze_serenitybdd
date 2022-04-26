@@ -6,7 +6,7 @@ Característica: Carrito de compras
 
   Escenario: Agregar Samsung galaxy s6 al carrito vacio como admin
     Dado que "Nicolas" se loguea como "admin"
-    Cuando agrega el "Samsung galaxy s6" al carrito vacio
+    Cuando "Nicolas" agrega el "Samsung galaxy s6" al carrito vacio
     Entonces debe ver como unico elemento el "Samsung galaxy s6"
 
   Esquema del escenario: Agregar <Objeto> al carrito vacio
@@ -20,7 +20,7 @@ Característica: Carrito de compras
   Escenario: Eliminar Samsung galaxy s6 del carrito teniendo otro elemento
     Dado "Nicolas" agrega "Samsung galaxy s6" y "Nexus 6" al carrito vacio
     Cuando elimina "Samsung galaxy s6"
-    Entonces debe ver como unico elemento un "Nexus 6"
+    Entonces debe ver como unico elemento el "Nexus 6"
 
   Escenario: Agregar 3 Samsung galaxy s6 al carrito
     Cuando  "Luci" agrega "3" "Samsung galaxy s6" al carrito
