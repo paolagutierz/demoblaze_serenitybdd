@@ -1,12 +1,9 @@
-# serenitybdd-web-seed
-Un proyecto base para automatización web usando serenityBDD, gradle y scraenplay 
+#demoblaze_serenitybdd
 
-En el archivo serenity.properties, cambiar la propiedad webdriver.chrome.driver a:
-```
-- Sistema operativo mac: webdriver.chrome.driver = /ruta/chromedriver
-- Sistema operativo windows: webdriver.chrome.driver = /ruta/chromedriver.exe
-```
-
+Este es un proyecto de automatización con serenity-bdd-screenplay que ejecuta pruebas en el sitio web https://www.demoblaze.com 
 
 Las pruebas se corren con el comando `gradle test aggregate`.
+
+Ver los informes
 La documentación viva será generada en `target/site/serenity/index.html`
+
