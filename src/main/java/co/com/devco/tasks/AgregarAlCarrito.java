@@ -13,7 +13,8 @@ import static co.com.devco.userinterfaces.DemoblazeDetalleProductoPage.BOTON_AGR
 import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_CARRITO;
 import static co.com.devco.userinterfaces.DemoblazeIndexPage.LINK_HOME;
 import static co.com.devco.userinterfaces.DemoblazeProductosPage.LINK_PRODUCTO;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
+
 
 public class AgregarAlCarrito implements Task {
     private String producto;
@@ -53,27 +54,27 @@ public class AgregarAlCarrito implements Task {
             for (int i = 0; i < cantidad; i++) {
                 actor.attemptsTo(
                         Click.on(LINK_PRODUCTO.of(producto)),
-                        WaitUntil.the(BOTON_AGREGAR_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(6)),
+                        WaitUntil.the(BOTON_AGREGAR_CARRITO, isEnabled()).forNoMoreThan(Duration.ofSeconds(6)),
                         Click.on(BOTON_AGREGAR_CARRITO),
-                        WaitUntil.the(LINK_HOME, isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
+                        WaitUntil.the(LINK_HOME, isEnabled()).forNoMoreThan(Duration.ofSeconds(10)),
                         Click.on(LINK_HOME),
-                        WaitUntil.the(LINK_PRODUCTO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(6))
+                        WaitUntil.the(LINK_PRODUCTO.of(producto), isEnabled()).forNoMoreThan(Duration.ofSeconds(6))
                 );
             }
 
             actor.attemptsTo(
                     Click.on(LINK_CARRITO),
-                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isEnabled()).forNoMoreThan(Duration.ofSeconds(10))
             );
 
         } else {
             actor.attemptsTo(
                     Click.on(LINK_PRODUCTO.of(producto)),
-                    WaitUntil.the(BOTON_AGREGAR_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(6)),
+                    WaitUntil.the(BOTON_AGREGAR_CARRITO, isEnabled()).forNoMoreThan(Duration.ofSeconds(6)),
                     Click.on(BOTON_AGREGAR_CARRITO),
-                    WaitUntil.the(LINK_CARRITO, isVisible()).forNoMoreThan(Duration.ofSeconds(10)),
+                    WaitUntil.the(LINK_CARRITO, isEnabled()).forNoMoreThan(Duration.ofSeconds(10)),
                     Click.on(LINK_CARRITO),
-                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isVisible()).forNoMoreThan(Duration.ofSeconds(10))
+                    WaitUntil.the(TITULO_PRODUCTO_CARRITO.of(producto), isEnabled()).forNoMoreThan(Duration.ofSeconds(10))
             );
 
         }
